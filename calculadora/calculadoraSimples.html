@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <style>
+        button{
+            width: 50px;
+            height: 50px;
+            font-size: 30px;
+        }
+        #btnLimp {
+            width: 212px;
+        }
+        #visor{
+            background-color: black;
+            color: white;
+            font-size: monospace;
+            width: 198px;
+            height: 50px;
+            text-align: right;
+            padding: 5px;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", () =>{
+            var visor=document.querySelector("#visor");
+            var v1="";
+            var v2="";
+            var oper="";
+            var resultado="";
+
+            var botaoNum=document.querySelectorAll(".btnNum");
+            for(var b of botaoNum){
+                b.addEventListener("click", function(){
+                    visor.value+=this.innerHTML;
+                })
+            }
+
+            var botaoOper=document.querySelectorAll(".btnOper");
+            for(var bop of botaoOper){
+                bop.addEventListener("click", function(){
+                    oper=this.innerHTML;
+                    v1=parseFloat(visor.value);
+                    visor.value="";
+                })
+            }
+
+            var botaoIgual=document.querySelector("#btnig");
+                botaoIgual.addEventListener("click", function(){
+                    v2=parseFloat(visor.value);
+                    resultado=eval(v1+oper+v2);
+                    visor.value=resultado;  
+                })
+            
+            var botaoLimpa=document.querySelector("#btnLimp");
+                botaoLimpa.addEventListener("click", function(){
+                    visor.value="";
+                    var v1="";
+                    var v2="";
+                    var oper="";
+                    var resultado="";
+                })
+        })
+    </script>
+</head>
+<body>
+    <h1>Calculadora</h1>
+    <input type="text" name="visor" id="visor">
+    <br>
+    <button type="button" name="btnLimp" id="btnLimp" class="botao">C</button>
+    <br>
+    <button type="button" name="btnmult" id="btnmult" class="btnOper">*</button>
+    <button type="button" name="btn7" id="btn7" class="btnNum">7</button>
+    <button type="button" name="btn8" id="bt8" class="btnNum">8</button>
+    <button type="button" name="btn9" id="btn9" class="btnNum">9</button>
+    <br>
+    <button type="button" name="btnmais" id="btnmais" class="btnOper">+</button>
+    <button type="button" name="btn4" id="btn4" class="btnNum">4</button>
+    <button type="button" name="btn5" id="btn5" class="btnNum">5</button>
+    <button type="button" name="btn6" id="btn6" class="btnNum">6</button>
+    <br>
+    <button type="button" name="btnmenos" id="btnmenos" class="btnOper">-</button>
+    <button type="button" name="btn1" id="btn1" class="btnNum">1</button>
+    <button type="button" name="btn2" id="btn2" class="btnNum">2</button>
+    <button type="button" name="btn3" id="btn3" class="btnNum">3</button>
+    <br>
+    <button type="button" name="btndiv" id="btndiv" class="btnOper">/</button>
+    <button type="button" name="btnponto" id="btnponto" class="btnNum">.</button>
+    <button type="button" name="btn0" id="btn0" class="btnNum">0</button>
+    <button type="button" name="btnig" id="btnig" class="btnNum">=</button>
+</body>
+</html>
